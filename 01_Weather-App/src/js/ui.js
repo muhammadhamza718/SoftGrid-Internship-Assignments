@@ -1,11 +1,7 @@
-/**
- * ui.js — DOM manipulation and rendering logic
- *
- * Sole responsibility: update the DOM to reflect loading, error,
- * and weather-data states. No API calls or event wiring here.
- */
+// ui.js — DOM manipulation and rendering logic
+// Sole responsibility: update the DOM to reflect loading, error,
+// and weather-data states. No API calls or event wiring here.
 
-/* --- DOM References --- */
 const weatherCard = document.getElementById('weather-card');
 const loadingEl = document.getElementById('loading');
 const errorContainer = document.getElementById('error-container');
@@ -18,20 +14,12 @@ const weatherIconContainer = document.getElementById('weather-icon-container');
 const humidityEl = document.getElementById('humidity');
 const windSpeedEl = document.getElementById('wind-speed');
 
-/**
- * Show the loading spinner and hide other states.
- */
 export function showLoading() {
   weatherCard.classList.add('hidden');
   errorContainer.classList.add('hidden');
   loadingEl.classList.remove('hidden');
 }
 
-/**
- * Display weather data in the card and animate it into view.
- *
- * @param {Object} data — normalized WeatherData from api.js
- */
 export function showWeather(data) {
   loadingEl.classList.add('hidden');
   errorContainer.classList.add('hidden');
@@ -45,28 +33,20 @@ export function showWeather(data) {
 
   weatherIconContainer.innerHTML = getWeatherIconSVG(data.iconCode, data.description);
 
-  /* Trigger entrance animation by removing then re-adding the card */
   weatherCard.classList.remove('hidden', 'visible');
 
-  /* Force a reflow so the browser registers the removal before re-add */
   void weatherCard.offsetHeight;
 
   weatherCard.classList.add('visible');
   weatherCard.classList.remove('hidden');
 }
 
-/**
- * Show an error message in a styled container with a shake animation.
- *
- * @param {string} message — user-friendly error text
- */
 export function showError(message) {
   loadingEl.classList.add('hidden');
   weatherCard.classList.add('hidden');
 
   errorMessage.textContent = message;
 
-  /* Re-trigger shake animation */
   errorContainer.classList.remove('glass-card--error');
   void errorContainer.offsetHeight;
   errorContainer.classList.add('glass-card--error');
@@ -74,9 +54,6 @@ export function showError(message) {
   errorContainer.classList.remove('hidden');
 }
 
-/**
- * Clear all result states — hide card, error, and loading.
- */
 export function clearResults() {
   weatherCard.classList.add('hidden');
   weatherCard.classList.remove('visible');
@@ -84,9 +61,6 @@ export function clearResults() {
   loadingEl.classList.add('hidden');
 }
 
-/**
- * Wrap inline SVG content with boilerplate defs and outer tag.
- */
 function createSVGWrapper(content) {
   return `
     <svg viewBox="0 0 100 100" class="weather-icon-svg" xmlns="http://www.w3.org/2000/svg">
@@ -117,9 +91,6 @@ function createSVGWrapper(content) {
   `;
 }
 
-/**
- * Map OpenWeatherMap icon code to a high-quality, animated CSS-based SVG string.
- */
 function getWeatherIconSVG(iconCode, description) {
   const isDay = iconCode.endsWith('d');
   

@@ -1,16 +1,7 @@
-/**
- * styles.css — Main stylesheet for SkyCast Weather App
- *
- * Design system: Dark Mode Glassmorphism
- * Architecture: CSS custom properties in :root, BEM-lite naming,
- *               transform/opacity-only animations, prefers-reduced-motion.
- */
 
-/* =========================================================
-   0. DESIGN TOKENS
-   ========================================================= */
+
 :root {
-  /* --- Colors --- */
+  
   --clr-bg-start: #0a0a1a;
   --clr-bg-end: #0d1b2a;
   --clr-glass: rgba(255, 255, 255, 0.06);
@@ -28,7 +19,6 @@
   --clr-orb-1: rgba(123, 110, 246, 0.25);
   --clr-orb-2: rgba(224, 108, 240, 0.2);
 
-  /* --- Weather Icons Gradients & Glows --- */
   --clr-sun-start: #ffe066;
   --clr-sun-end: #ff8c00;
   --clr-sun-glow: rgba(255, 140, 0, 0.6);
@@ -46,7 +36,6 @@
   --clr-snow-start: #e0f7fa;
   --clr-snow-end: #b2ebf2;
 
-  /* --- Typography --- */
   --font-display: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
   --fs-hero: clamp(2.8rem, 6vw, 4.5rem);
@@ -61,7 +50,6 @@
   --fw-semibold: 600;
   --fw-bold: 700;
 
-  /* --- Spacing --- */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
@@ -70,7 +58,6 @@
   --space-2xl: 3rem;
   --space-3xl: 4rem;
 
-  /* --- Glassmorphism --- */
   --blur-glass: 20px;
   --radius-card: 20px;
   --radius-input: 14px;
@@ -78,15 +65,11 @@
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
   --shadow-glow: 0 0 20px var(--clr-accent-glow);
 
-  /* --- Transitions --- */
   --transition-fast: 200ms ease;
   --transition-base: 300ms ease;
   --transition-slow: 500ms ease;
 }
 
-/* =========================================================
-   1. RESET & BASE
-   ========================================================= */
 *,
 *::before,
 *::after {
@@ -118,9 +101,6 @@ img {
   display: block;
 }
 
-/* =========================================================
-   2. AMBIENT BACKGROUND ORBS
-   ========================================================= */
 .bg-orb {
   position: fixed;
   border-radius: 50%;
@@ -174,9 +154,6 @@ img {
   }
 }
 
-/* =========================================================
-   3. LAYOUT
-   ========================================================= */
 .header,
 .main,
 .footer {
@@ -232,9 +209,6 @@ img {
   letter-spacing: 0.08em;
 }
 
-/* =========================================================
-   4. GLASSMORPHISM UTILITY
-   ========================================================= */
 .glass-card {
   background: var(--clr-glass);
   backdrop-filter: blur(var(--blur-glass));
@@ -249,9 +223,6 @@ img {
   border-color: var(--clr-glass-error-border);
 }
 
-/* =========================================================
-   5. SEARCH FORM
-   ========================================================= */
 .search-form {
   display: flex;
   align-items: center;
@@ -311,9 +282,6 @@ img {
   height: 20px;
 }
 
-/* =========================================================
-   6. LOADING STATE
-   ========================================================= */
 .loading {
   display: flex;
   flex-direction: column;
@@ -345,9 +313,6 @@ img {
   letter-spacing: 0.1em;
 }
 
-/* =========================================================
-   7. ERROR STATE
-   ========================================================= */
 .error-container {
   display: flex;
   flex-direction: column;
@@ -387,9 +352,6 @@ img {
   }
 }
 
-/* =========================================================
-   8. WEATHER CARD
-   ========================================================= */
 .weather-card {
   padding: var(--space-2xl);
   animation: card-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -449,14 +411,12 @@ img {
   transform: scale(1.12) rotate(5deg);
 }
 
-/* --- SVG Weather Icons Core --- */
 .weather-icon-svg {
   width: 100%;
   height: 100%;
   overflow: visible;
 }
 
-/* --- Sun Elements & Animations --- */
 .svg-sun-beams {
   transform-origin: 50px 50px;
   animation: sun-beam-spin 25s infinite linear;
@@ -483,7 +443,6 @@ img {
   }
 }
 
-/* --- Moon Elements & Animations --- */
 .svg-moon-body {
   transform-origin: 50px 50px;
   animation: moon-body-pulse 5s infinite ease-in-out;
@@ -505,7 +464,6 @@ img {
   mix-blend-mode: multiply;
 }
 
-/* --- Cloud Elements & Animations --- */
 .svg-cloud {
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
 }
@@ -528,7 +486,6 @@ img {
   100% { transform: translate(-3px, 1.5px); }
 }
 
-/* --- Rain Elements & Animations --- */
 .svg-rain-drop {
   animation: rain-fall-anim 1.2s infinite linear;
 }
@@ -556,7 +513,6 @@ img {
   }
 }
 
-/* --- Lightning Elements & Animations --- */
 .svg-lightning-bolt {
   animation: lightning-strike 4s infinite ease-in-out;
   filter: drop-shadow(0 0 8px var(--clr-lightning-glow));
@@ -567,7 +523,6 @@ img {
   90%, 94% { opacity: 1; }
 }
 
-/* --- Snow Elements & Animations --- */
 .svg-snowflake {
   animation: snow-drift-anim 3s infinite linear;
   transform-origin: 50% 50%;
@@ -595,7 +550,6 @@ img {
   }
 }
 
-/* --- Mist Elements & Animations --- */
 .svg-mist-line {
   animation: mist-slide 5s infinite ease-in-out alternate;
 }
@@ -676,16 +630,10 @@ img {
   letter-spacing: 0.08em;
 }
 
-/* =========================================================
-   9. VISIBILITY UTILITY
-   ========================================================= */
 .hidden {
   display: none;
 }
 
-/* =========================================================
-   10. RESPONSIVE
-   ========================================================= */
 @media (max-width: 480px) {
   .header {
     padding-top: var(--space-2xl);
@@ -725,9 +673,6 @@ img {
   }
 }
 
-/* =========================================================
-   11. REDUCED MOTION
-   ========================================================= */
 @media (prefers-reduced-motion: reduce) {
   .bg-orb--1,
   .bg-orb--2 {
